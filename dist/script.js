@@ -2233,11 +2233,11 @@ __webpack_require__.r(__webpack_exports__);
 
     xhr.onload = function () {
       if (xhr.readyState === 4 && xhr.status === 200 && typeof success === 'function') {
-        // success(xhr.response);
         allowed(xhr.response, body);
         insertData(xhr.response);
         if (xhr.response === 'blocked') error(xhr.response);
-      } else if (xhr.readyState === 4 && xhr.status !== 200 && typeof error === 'function') {// error(xhr.response);
+      } else if (xhr.readyState === 4 && xhr.status !== 200 && typeof error === 'function') {
+        error(xhr.response);
       }
     };
 
