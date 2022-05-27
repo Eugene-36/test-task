@@ -38,23 +38,22 @@ body {
 #mainForm .fields-wrapper {
   display: flex;
   flex-flow: wrap;
-  /* flex-direction: row-reverse; */
   justify-content: space-between;
-  /* align-items: flex-end; */
 }
 
 #mainForm .field-wrapper {
-  flex: 33%;
-  max-width: 33%;
+  flex: 32%;
+  width: 29%;
   display: flex;
   flex-direction: column;
+
   margin-bottom: 1rem;
+  margin-left: 0.6%;
 }
 
-#mainForm .field-label {
-  margin-bottom: 0.5rem;
+input {
+  margin-top: 0.5rem;
 }
-
 #mainForm .field {
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
@@ -151,29 +150,25 @@ body {
 }
 
 /*? Media */
-
-@media (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
   #mainForm .fields-wrapper {
     display: inline-block;
-    text-align: center;
   }
 
   #mainForm .field-wrapper {
-    display: inline-flex;
-
-    text-align: initial;
+    display: inline-block;
+    width: 45%;
+    margin-left: 3%;
   }
 }
 
 @media (max-width: 480px) {
-  #mainForm .fields-wrapper {
-    display: flex;
-    flex-direction: column;
+  mainForm .fields-wrapper {
     align-items: center;
   }
   #mainForm .field-wrapper {
-    display: flex;
-
     min-width: 100%;
+    display: inline-block;
+    margin-left: 0;
   }
 }

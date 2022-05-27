@@ -38,9 +38,7 @@ body {
 #mainForm .fields-wrapper {
   display: flex;
   flex-flow: wrap;
-  /* flex-direction: row-reverse; */
   justify-content: space-between;
-  /* align-items: flex-end; */
 }
 
 #mainForm .field-wrapper {
@@ -53,9 +51,6 @@ body {
   margin-left: 0.6%;
 }
 
-/* #mainForm .field-label {
-  margin-bottom: 0.5rem;
-} */
 input {
   margin-top: 0.5rem;
 }
@@ -169,23 +164,11 @@ input {
 
 @media (max-width: 480px) {
   mainForm .fields-wrapper {
-    /* display: flex; */
-    /* flex-direction: column; */
     align-items: center;
   }
   #mainForm .field-wrapper {
-    /* display: flex; */
     min-width: 100%;
     display: inline-block;
     margin-left: 0;
   }
-  /* .field-error {
-    text-align: center;
-  } */
-}
-@media screen and (min-width: 1280px) {
-  /* #mainForm .field-wrapper {
-    flex: 33%;
-    max-width: 33%;
-  } */
 }

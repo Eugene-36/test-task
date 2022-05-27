@@ -13,7 +13,7 @@
     <div class="wrapper">
       <form id="mainForm">
         <div class="steps">
-          <div class="step">
+          <div class="step step_active">
             <div class="fields-wrapper">
               <div class="field-wrapper">
                 <label for="firstName" class="field-label">First Name</label>
@@ -95,7 +95,7 @@
             </div>
           </div>
 
-          <div class="step step_active">
+          <div class="step">
             <div class="fields-wrapper">
               <div class="field-wrapper">
                 <label for="zip" class="field-label">Zip</label>
@@ -148,7 +148,11 @@
           <button type="button" class="control control_next" data-next>
             Next
           </button>
-          <button type="submit" class="control control_submit" data-submit>
+          <button
+            type="submit"
+            class="control control_hide control_submit"
+            data-submit
+          >
             Submit
           </button>
           <!-- control_hide -->

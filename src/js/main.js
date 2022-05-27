@@ -190,7 +190,7 @@
 
   function helper(elements) {
     for (var i = 0; i < elements.length; i++) {
-      const element = elements[i];
+      var element = elements[i];
       if (element.classList.contains('control_hide')) {
         element.classList.remove('control_hide');
       } else if (!element.classList.contains('control_hide')) {
@@ -250,7 +250,6 @@
       city.style.backgroundColor = '#e9ecef';
       state.value = '';
       city.value = '';
-      // error(xhr.response);
     }
   }
 
