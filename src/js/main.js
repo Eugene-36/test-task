@@ -18,7 +18,6 @@
         xhr.status === 200 &&
         typeof success === 'function'
       ) {
-        // success(xhr.response);
         allowed(xhr.response, body);
         insertData(xhr.response);
         if (xhr.response === 'blocked') error(xhr.response);
@@ -27,7 +26,7 @@
         xhr.status !== 200 &&
         typeof error === 'function'
       ) {
-        // error(xhr.response);
+        error(xhr.response);
       }
     };
     xhr.onerror = error || null;
