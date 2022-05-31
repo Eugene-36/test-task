@@ -118,6 +118,7 @@
   }
   function validateField(element) {
     var fieldValidation = validations[element.id];
+
     var result = { valid: true, element: element, message: '' };
 
     if (fieldValidation) {
@@ -135,6 +136,7 @@
         }
       }
     }
+
     return result;
   }
 
@@ -158,11 +160,13 @@
 
   function nextBtnFunction(e) {
     var counter = 0;
-    var allInputs = Array.from(
-      document.querySelectorAll('[data-validation]')
-    ).slice(0, -1);
+    var allInputs = document.querySelectorAll('[data-validation]');
+    console.log('allInputs', allInputs);
 
-    var changeActiveStep = this.parentNode.parentNode.children[0].children;
+    // var changeActiveStep = this.parentNode.parentNode.children[0].children;
+    var step = document.querySelector('.step');
+
+    //=====================
     var openHiddenBtn = this.parentNode.children;
 
     for (var i = 0; i < allInputs.length; i++) {
@@ -171,8 +175,8 @@
       validateField(element).valid ? counter++ : counter--;
 
       if (counter === allInputs.length) {
-        changeActiveStep[0].classList.remove('step_active');
-        changeActiveStep[1].classList.add('step_active');
+        step.classList.remove('step_active');
+        step.nextElementSibling.classList.add('step_active');
         helper(openHiddenBtn);
       }
     }
@@ -257,6 +261,8 @@
     var zipValue = document.getElementById('zip');
     var city = e.target.querySelector('#city');
     var state = e.target.querySelector('#state');
+
+    console.log('e.target.value', e.target);
 
     if (zipValue.value === '') {
       toggleError(zipValue, validateField(zipValue).message);

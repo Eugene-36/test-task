@@ -151,15 +151,7 @@ input {
 
 /*? Media */
 @media screen and (min-width: 481px) and (max-width: 768px) {
-  #mainForm .fields-wrapper {
-    /* display: inline-block; */
-  }
-
   #mainForm .field-wrapper {
-    /* display: inline-block;
-    width: 45%;
-    margin-left: 3%; */
-
     width: 45%;
     margin-left: 3%;
     float: left;
