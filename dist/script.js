@@ -2213,12 +2213,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_es_string_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.string.iterator */ "./node_modules/core-js/modules/es.string.iterator.js");
 /* harmony import */ var core_js_modules_es_string_iterator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _validation_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./validation.js */ "./src/js/validation.js");
-/* harmony import */ var _validation_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_validation_js__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
 
+var validations = __webpack_require__(/*! ./validation.js */ "./src/js/validation.js");
 
 (function () {
   /*
@@ -2268,7 +2267,7 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   function validateField(element) {
-    var fieldValidation = _validation_js__WEBPACK_IMPORTED_MODULE_3___default.a[element.id];
+    var fieldValidation = validations[element.id];
     var result = {
       valid: true,
       element: element,
@@ -2334,9 +2333,9 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   function nextPrev(n) {
-    var x = document.getElementsByClassName('step'); //=======
+    var blocks = document.getElementsByClassName('step'); //=======
 
-    x[caurrentTab].classList.remove('step_active');
+    blocks[caurrentTab].classList.remove('step_active');
     var counter = 0;
     var allInputs = Array.from(document.querySelectorAll('[data-validation]')).slice(0, -1);
 

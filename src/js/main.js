@@ -1,5 +1,4 @@
-import validations from './validation.js';
-
+const validations = require('./validation.js');
 (function () {
   /*
    * Secondary functions
@@ -123,9 +122,9 @@ import validations from './validation.js';
   }
 
   function nextPrev(n) {
-    var x = document.getElementsByClassName('step');
+    var blocks = document.getElementsByClassName('step');
     //=======
-    x[caurrentTab].classList.remove('step_active');
+    blocks[caurrentTab].classList.remove('step_active');
     var counter = 0;
     var allInputs = Array.from(
       document.querySelectorAll('[data-validation]')
