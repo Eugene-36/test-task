@@ -158,37 +158,67 @@
     }
   }
 
+  //!==============
+  var step = [...document.querySelectorAll('.step')];
+
+  console.log('step', step);
+
+  let currentStep = step.findIndex((stepBlock) => {
+    return stepBlock.classList.contains('step_active');
+  });
+
+  console.log('currentStep', currentStep);
+
+  if (currentStep < 0) {
+    currentStep = 0;
+    showCurrentStep();
+  }
+
+  function showCurrentStep() {
+    step.forEach((step, index) => {
+      step.classList.toggle('step_active', index === currentStep);
+    });
+  }
+  //!============
+
   function nextBtnFunction(e) {
     var counter = 0;
-    var allInputs = document.querySelectorAll('[data-validation]');
-    console.log('allInputs', allInputs);
+    var allInputs = Array.from(
+      document.querySelectorAll('[data-validation]')
+    ).slice(0, -1);
 
-    // var changeActiveStep = this.parentNode.parentNode.children[0].children;
-    var step = document.querySelector('.step');
-
-    //=====================
-    var openHiddenBtn = this.parentNode.children;
+    var openHiddenBtn = document.querySelectorAll('.control');
 
     for (var i = 0; i < allInputs.length; i++) {
       var element = allInputs[i];
       toggleError(element, validateField(element).message);
       validateField(element).valid ? counter++ : counter--;
+    }
 
-      if (counter === allInputs.length) {
-        step.classList.remove('step_active');
-        step.nextElementSibling.classList.add('step_active');
-        helper(openHiddenBtn);
+    if (counter === allInputs.length) {
+      console.log('currentStep', currentStep);
+      currentStep++;
+      showCurrentStep();
+      console.log('currentStep > step.length', currentStep > step.length);
+      if (currentStep >= step.length - 2) {
+        return;
       }
+      // helper(openHiddenBtn);
     }
   }
 
-  function prevBtnFunction() {
-    var prevBtn = this.parentNode.children;
-    var changeActiveStepBack = this.parentNode.parentNode.children[0].children;
-    changeActiveStepBack[1].classList.remove('step_active');
-    changeActiveStepBack[0].classList.add('step_active');
+  function prevBtnFunction(e) {
+    var prevBtn = document.querySelectorAll('.control');
 
-    helper(prevBtn, changeActiveStepBack);
+    console.log('currentStep--', currentStep);
+    if (currentStep < 1) {
+      return;
+    } else {
+      currentStep--;
+      showCurrentStep();
+    }
+
+    // helper(prevBtn, prevBtn);
   }
 
   function helper(elements) {
