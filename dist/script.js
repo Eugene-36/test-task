@@ -2213,6 +2213,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_es_string_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.string.iterator */ "./node_modules/core-js/modules/es.string.iterator.js");
 /* harmony import */ var core_js_modules_es_string_iterator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _validation_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./validation.js */ "./src/js/validation.js");
+/* harmony import */ var _validation_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_validation_js__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -2248,19 +2251,6 @@ __webpack_require__.r(__webpack_exports__);
    * */
 
 
-  function checkRegExp(pattern, message, value) {
-    return pattern.test(value) ? true : message;
-  }
-
-  var validations = {
-    firstName: [checkRegExp.bind(null, /^[A-Zа-я]{2,}$/i, 'Field may contain only letters and not be less than 2 letters'), checkRegExp.bind(null, /^[A-Zа-я]{2,64}$/i, 'Field may contain only letters and not be more than 64 letters')],
-    lastName: [checkRegExp.bind(null, /^[A-Zа-я]{2,}$/i, 'Field may contain only letters and not be less than 2 letters'), checkRegExp.bind(null, /^[A-Zа-я]{2,64}$/i, 'Field may contain only letters and not be more than 64 letters')],
-    email: [checkRegExp.bind(null, /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Please enter valid email')],
-    phone: [checkRegExp.bind(null, /^[0-9]{8}$/, 'Field may contain only 8 digits')],
-    password: [checkRegExp.bind(null, /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\!\@\#\$\%\^\&\*\-])/, 'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*-)')],
-    password2: [checkRegExp.bind(null, /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\!\@\#\$\%\^\&\*\-])/, 'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*-)')],
-    zip: [checkRegExp.bind(null, /^[0-9]{5}$/, 'Field must include 5 digits and only consist of numeric values')]
-  };
   var pass1 = '';
   var pass2 = '';
 
@@ -2278,7 +2268,7 @@ __webpack_require__.r(__webpack_exports__);
   }
 
   function validateField(element) {
-    var fieldValidation = validations[element.id];
+    var fieldValidation = _validation_js__WEBPACK_IMPORTED_MODULE_3___default.a[element.id];
     var result = {
       valid: true,
       element: element,
@@ -2445,6 +2435,29 @@ __webpack_require__.r(__webpack_exports__);
   document.getElementById('mainForm').addEventListener('submit', submitFormFunc);
   document.getElementById('zip').addEventListener('change', requestZip);
 })();
+
+/***/ }),
+
+/***/ "./src/js/validation.js":
+/*!******************************!*\
+  !*** ./src/js/validation.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function checkRegExp(pattern, message, value) {
+  return pattern.test(value) ? true : message;
+}
+
+module.exports = {
+  firstName: [checkRegExp.bind(null, /^[A-Zа-я]{2,}$/i, 'Field may contain only letters and not be less than 2 letters'), checkRegExp.bind(null, /^[A-Zа-я]{2,64}$/i, 'Field may contain only letters and not be more than 64 letters')],
+  lastName: [checkRegExp.bind(null, /^[A-Zа-я]{2,}$/i, 'Field may contain only letters and not be less than 2 letters'), checkRegExp.bind(null, /^[A-Zа-я]{2,64}$/i, 'Field may contain only letters and not be more than 64 letters')],
+  email: [checkRegExp.bind(null, /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Please enter valid email')],
+  phone: [checkRegExp.bind(null, /^[0-9]{8}$/, 'Field may contain only 8 digits')],
+  password: [checkRegExp.bind(null, /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\!\@\#\$\%\^\&\*\-])/, 'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*-)')],
+  password2: [checkRegExp.bind(null, /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\!\@\#\$\%\^\&\*\-])/, 'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*-)')],
+  zip: [checkRegExp.bind(null, /^[0-9]{5}$/, 'Field must include 5 digits and only consist of numeric values')]
+};
 
 /***/ })
 
