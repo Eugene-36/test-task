@@ -157,37 +157,38 @@
       toggleError(e.target, validateField(e.target).message);
     }
   }
+  // =========================
+  var caurrentTab = 0;
+  showTab(caurrentTab);
 
-  //!==============
-  var step = [...document.querySelectorAll('.step')];
+  function showTab(n) {
+    var x = document.getElementsByClassName('step');
+    x[n].classList.add('step_active');
 
-  console.log('step', step);
+    if (n === 0) {
+      document.querySelector('[data-prev]').classList.add('control_hide');
+    } else if (n > 0) {
+      document.querySelector('[data-prev]').classList.remove('control_hide');
+    }
 
-  let currentStep = step.findIndex((stepBlock) => {
-    return stepBlock.classList.contains('step_active');
-  });
-
-  console.log('currentStep', currentStep);
-
-  if (currentStep < 0) {
-    currentStep = 0;
-    showCurrentStep();
+    if (n === x.length - 1) {
+      document.querySelector('[data-submit]').classList.remove('control_hide');
+      document.querySelector('[data-prev]').classList.remove('control_hide');
+      document.querySelector('[data-next]').classList.add('control_hide');
+    } else {
+      document.querySelector('[data-submit]').classList.add('control_hide');
+      document.querySelector('[data-next]').classList.remove('control_hide');
+    }
   }
 
-  function showCurrentStep() {
-    step.forEach((step, index) => {
-      step.classList.toggle('step_active', index === currentStep);
-    });
-  }
-  //!============
-
-  function nextBtnFunction(e) {
+  function nextPrev(n) {
+    var x = document.getElementsByClassName('step');
+    //=======
+    x[caurrentTab].classList.remove('step_active');
     var counter = 0;
     var allInputs = Array.from(
       document.querySelectorAll('[data-validation]')
     ).slice(0, -1);
-
-    var openHiddenBtn = document.querySelectorAll('.control');
 
     for (var i = 0; i < allInputs.length; i++) {
       var element = allInputs[i];
@@ -196,40 +197,10 @@
     }
 
     if (counter === allInputs.length) {
-      console.log('currentStep', currentStep);
-      currentStep++;
-      showCurrentStep();
-      console.log('currentStep > step.length', currentStep > step.length);
-      if (currentStep >= step.length - 2) {
-        return;
-      }
-      // helper(openHiddenBtn);
-    }
-  }
-
-  function prevBtnFunction(e) {
-    var prevBtn = document.querySelectorAll('.control');
-
-    console.log('currentStep--', currentStep);
-    if (currentStep < 1) {
-      return;
-    } else {
-      currentStep--;
-      showCurrentStep();
+      caurrentTab = caurrentTab + n;
     }
 
-    // helper(prevBtn, prevBtn);
-  }
-
-  function helper(elements) {
-    for (var i = 0; i < elements.length; i++) {
-      var element = elements[i];
-      if (element.classList.contains('control_hide')) {
-        element.classList.remove('control_hide');
-      } else if (!element.classList.contains('control_hide')) {
-        element.classList.add('control_hide');
-      }
-    }
+    showTab(caurrentTab);
   }
 
   function requestZip(e) {
@@ -311,12 +282,12 @@
    * Listeners
    * */
   document.getElementById('mainForm').addEventListener('change', formOnchange);
-  document
-    .querySelector('[data-next]')
-    .addEventListener('click', nextBtnFunction);
-  document
-    .querySelector('[data-prev]')
-    .addEventListener('click', prevBtnFunction);
+  document.querySelector('[data-next]').addEventListener('click', () => {
+    nextPrev(1);
+  });
+  document.querySelector('[data-prev]').addEventListener('click', () => {
+    nextPrev(-1);
+  });
   document
     .getElementById('mainForm')
     .addEventListener('submit', submitFormFunc);
