@@ -102,7 +102,6 @@ const validations = require('./validation.js');
   showTab(caurrentTab);
 
   function showTab(currentTab) {
-    console.log('currentTab', currentTab);
     var blockForm = document.getElementsByClassName('step');
     blockForm[currentTab].classList.add('step_active');
 

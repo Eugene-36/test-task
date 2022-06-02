@@ -2313,7 +2313,6 @@ var validations = __webpack_require__(/*! ./validation.js */ "./src/js/validatio
   showTab(caurrentTab);
 
   function showTab(currentTab) {
-    console.log('currentTab', currentTab);
     var blockForm = document.getElementsByClassName('step');
     blockForm[currentTab].classList.add('step_active');
 
@@ -2391,7 +2390,6 @@ var validations = __webpack_require__(/*! ./validation.js */ "./src/js/validatio
 
     if (response !== 'allowed' && response !== 'blocked' && response !== 'error') {
       var obj = JSON.parse(response);
-      console.log('obj', obj);
       state.style.backgroundColor = '#fff';
       city.style.backgroundColor = '#fff';
       state.value = obj.state;
@@ -2409,7 +2407,6 @@ var validations = __webpack_require__(/*! ./validation.js */ "./src/js/validatio
     var zipValue = document.getElementById('zip');
     var city = e.target.querySelector('#city');
     var state = e.target.querySelector('#state');
-    console.log('e.target.value', e.target);
 
     if (zipValue.value === '') {
       toggleError(zipValue, validateField(zipValue).message);
