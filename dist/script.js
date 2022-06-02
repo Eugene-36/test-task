@@ -2260,9 +2260,6 @@ var validations = __webpack_require__(/*! ./validation.js */ "./src/js/validatio
     if (pass2 !== pass1 && element.id === 'password2') {
       result.valid = false;
       result.message = 'Must be to equal to password';
-    } else if (pass2 === pass1 && element.id === 'password2' && element.id === 'password') {
-      result.valid = true;
-      result.message = '';
     }
   }
 
@@ -2333,11 +2330,10 @@ var validations = __webpack_require__(/*! ./validation.js */ "./src/js/validatio
   }
 
   function nextPrev(curentNumb) {
-    var blocks = document.getElementsByClassName('step'); //=======
-
-    blocks[caurrentTab].classList.remove('step_active');
+    var blocks = document.getElementsByClassName('step');
     var counter = 0;
     var allInputs = Array.from(document.querySelectorAll('[data-validation]')).slice(0, -1);
+    blocks[caurrentTab].classList.remove('step_active');
 
     for (var i = 0; i < allInputs.length; i++) {
       var element = allInputs[i];
