@@ -42,8 +42,9 @@ body {
 }
 
 #mainForm .field-wrapper {
-  flex: 32%;
-  width: 29%;
+  /* flex: 32%; */
+
+  width: 32.7%;
   display: flex;
   flex-direction: column;
 
@@ -152,7 +153,7 @@ input {
 /*? Media */
 @media screen and (min-width: 481px) and (max-width: 768px) {
   #mainForm .field-wrapper {
-    width: 45%;
+    width: 47%;
     margin-left: 3%;
     float: left;
     height: auto;
