@@ -212,12 +212,12 @@ const validations = require('./validation.js');
    * Listeners
    * */
   document.getElementById('mainForm').addEventListener('change', formOnchange);
-  document.querySelector('[data-next]').addEventListener('click', () => {
-    nextPrev(1);
-  });
-  document.querySelector('[data-prev]').addEventListener('click', () => {
-    nextPrev(-1);
-  });
+  document
+    .querySelector('[data-next]')
+    .addEventListener('click', () => nextPrev(1));
+  document
+    .querySelector('[data-prev]')
+    .addEventListener('click', () => nextPrev(-1));
   document
     .getElementById('mainForm')
     .addEventListener('submit', submitFormFunc);

@@ -2420,10 +2420,10 @@ var validations = __webpack_require__(/*! ./validation.js */ "./src/js/validatio
 
   document.getElementById('mainForm').addEventListener('change', formOnchange);
   document.querySelector('[data-next]').addEventListener('click', function () {
-    nextPrev(1);
+    return nextPrev(1);
   });
   document.querySelector('[data-prev]').addEventListener('click', function () {
-    nextPrev(-1);
+    return nextPrev(-1);
   });
   document.getElementById('mainForm').addEventListener('submit', submitFormFunc);
   document.getElementById('zip').addEventListener('change', requestZip);
