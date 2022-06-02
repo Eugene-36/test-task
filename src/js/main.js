@@ -184,7 +184,6 @@ const validations = require('./validation.js');
       response !== 'error'
     ) {
       var obj = JSON.parse(response);
-      console.log('obj', obj);
 
       state.style.backgroundColor = '#fff';
       city.style.backgroundColor = '#fff';
@@ -203,8 +202,6 @@ const validations = require('./validation.js');
     var zipValue = document.getElementById('zip');
     var city = e.target.querySelector('#city');
     var state = e.target.querySelector('#state');
-
-    console.log('e.target.value', e.target);
 
     if (zipValue.value === '') {
       toggleError(zipValue, validateField(zipValue).message);
