@@ -101,17 +101,18 @@ const validations = require('./validation.js');
   var caurrentTab = 0;
   showTab(caurrentTab);
 
-  function showTab(n) {
-    var x = document.getElementsByClassName('step');
-    x[n].classList.add('step_active');
+  function showTab(currentTab) {
+    console.log('currentTab', currentTab);
+    var blockForm = document.getElementsByClassName('step');
+    blockForm[currentTab].classList.add('step_active');
 
-    if (n === 0) {
+    if (currentTab === 0) {
       document.querySelector('[data-prev]').classList.add('control_hide');
-    } else if (n > 0) {
+    } else if (currentTab > 0) {
       document.querySelector('[data-prev]').classList.remove('control_hide');
     }
 
-    if (n === x.length - 1) {
+    if (currentTab === blockForm.length - 1) {
       document.querySelector('[data-submit]').classList.remove('control_hide');
       document.querySelector('[data-prev]').classList.remove('control_hide');
       document.querySelector('[data-next]').classList.add('control_hide');
@@ -121,7 +122,7 @@ const validations = require('./validation.js');
     }
   }
 
-  function nextPrev(n) {
+  function nextPrev(curentNumb) {
     var blocks = document.getElementsByClassName('step');
     //=======
     blocks[caurrentTab].classList.remove('step_active');
@@ -137,7 +138,7 @@ const validations = require('./validation.js');
     }
 
     if (counter === allInputs.length) {
-      caurrentTab = caurrentTab + n;
+      caurrentTab = caurrentTab + curentNumb;
     }
 
     showTab(caurrentTab);
