@@ -51,10 +51,10 @@ body {
   margin-bottom: 1rem;
   margin-left: 0.6%;
 }
-
-input {
-  margin-top: 0.5rem;
+.field-label {
+  margin-bottom: 0.5rem;
 }
+
 #mainForm .field {
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
@@ -166,7 +166,6 @@ input {
   }
   #mainForm .field-wrapper {
     min-width: 100%;
-    display: inline-block;
     margin-left: 0;
   }
 }

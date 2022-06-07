@@ -19,9 +19,7 @@ const validations = require('./validation.js');
         xhr.status === 200 &&
         typeof success === 'function'
       ) {
-        allowed(xhr.response, body);
-        insertData(xhr.response);
-        if (xhr.response === 'blocked') error(xhr.response);
+        success(xhr.response);
       } else if (
         xhr.readyState === 4 &&
         xhr.status !== 200 &&
@@ -36,30 +34,15 @@ const validations = require('./validation.js');
   /*
    * Validation
    * */
-  var pass1 = '';
-  var pass2 = '';
 
-  function checkPasswordsMatch(element, result) {
-    if (element.id === 'password') pass1 = element.value;
-
-    if (element.id === 'password2') pass2 = element.value;
-
-    if (pass2 !== pass1 && element.id === 'password2') {
-      result.valid = false;
-      result.message = 'Must be to equal to password';
-    }
-  }
   function validateField(element) {
     var fieldValidation = validations[element.id];
 
     var result = { valid: true, element: element, message: '' };
 
     if (fieldValidation) {
-      checkPasswordsMatch(element, result);
-
       for (var i = 0, len = fieldValidation.length; i < len; i++) {
         var validationFunction = fieldValidation[i];
-
         var answer = validationFunction(element.value);
 
         if (typeof answer === 'string') {
@@ -69,7 +52,6 @@ const validations = require('./validation.js');
         }
       }
     }
-
     return result;
   }
 
@@ -136,47 +118,12 @@ const validations = require('./validation.js');
     showTab(caurrentTab);
   }
 
-  function requestZip(e) {
-    var params = 'zip=' + e.target.value;
-    var bodyContent = {
-      url: 'assets/geoStatus.php',
-      body: params,
-      success: function (result) {
-        alert(result);
-      },
-      error: function (result) {
-        alert(result);
-      },
-    };
-    ajax(bodyContent);
-  }
-
-  function allowed(str, params) {
-    var bodyValues = {
-      url: 'assets/geoData.php',
-      body: params,
-      success: function (result) {
-        alert(result);
-      },
-      error: function (result) {
-        alert(result);
-      },
-    };
-    if (str === 'allowed') {
-      ajax(bodyValues);
-    }
-  }
-
   function insertData(response) {
     var state = document.getElementById('state');
     var city = document.getElementById('city');
-    if (
-      response !== 'allowed' &&
-      response !== 'blocked' &&
-      response !== 'error'
-    ) {
-      var obj = JSON.parse(response);
 
+    if (response !== 'error' && response !== 'blocked') {
+      var obj = JSON.parse(response);
       state.style.backgroundColor = '#fff';
       city.style.backgroundColor = '#fff';
       state.value = obj.state;
@@ -187,6 +134,41 @@ const validations = require('./validation.js');
       state.value = '';
       city.value = '';
     }
+  }
+
+  function allowed(str, params) {
+    var bodyValues = {
+      url: 'assets/geoData.php',
+      body: params,
+      success: function (result) {
+        insertData(result);
+      },
+      error: function (result) {
+        alert(result);
+      },
+    };
+
+    if (str === 'allowed') {
+      ajax(bodyValues);
+    } else {
+      insertData(str);
+    }
+  }
+
+  function requestZip(e) {
+    var params = 'zip=' + e.target.value;
+    var bodyContent = {
+      url: 'assets/geoStatus.php',
+      body: params,
+      success: function (result) {
+        alert(result);
+        allowed(result, params);
+      },
+      error: function (result) {
+        alert(result);
+      },
+    };
+    ajax(bodyContent);
   }
 
   function submitFormFunc(e) {

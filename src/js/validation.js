@@ -1,6 +1,15 @@
 function checkRegExp(pattern, message, value) {
   return pattern.test(value) ? true : message;
 }
+function checkEqualPasswords(password1, password2, message) {
+  console.log('password2', password1.value);
+  console.log('password2', password2.value);
+
+  console.log('message', message);
+
+  return password1.value !== password2.value ? message : null;
+}
+
 module.exports = {
   firstName: [
     checkRegExp.bind(
@@ -48,6 +57,13 @@ module.exports = {
       null,
       /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\!\@\#\$\%\^\&\*\-])/,
       'Required at least one number (0-9), uppercase and lowercase letters (a-Z) and at least one special character (!@#$%^&*-)'
+    ),
+
+    checkEqualPasswords.bind(
+      null,
+      password,
+      password2,
+      'Passwords must be equal !!!'
     ),
   ],
   zip: [
