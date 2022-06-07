@@ -2,11 +2,6 @@ function checkRegExp(pattern, message, value) {
   return pattern.test(value) ? true : message;
 }
 function checkEqualPasswords(password1, password2, message) {
-  console.log('password2', password1.value);
-  console.log('password2', password2.value);
-
-  console.log('message', message);
-
   return password1.value !== password2.value ? message : null;
 }
 

@@ -98,10 +98,11 @@ const validations = require('./validation.js');
 
   function nextPrev(curentNumb) {
     var blocks = document.getElementsByClassName('step');
+
     var counter = 0;
-    var allInputs = Array.from(
-      document.querySelectorAll('[data-validation]')
-    ).slice(0, -1);
+
+    var allInputs = blocks[caurrentTab].getElementsByClassName('field');
+    // console.log('allInputs', allInputs);
 
     blocks[caurrentTab].classList.remove('step_active');
 
@@ -109,6 +110,8 @@ const validations = require('./validation.js');
       var element = allInputs[i];
       toggleError(element, validateField(element).message);
       validateField(element).valid ? counter++ : counter--;
+
+      // console.log('element', element.nextElementSibling.textContent === '');
     }
 
     if (counter === allInputs.length) {
