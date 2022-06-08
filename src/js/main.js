@@ -76,7 +76,7 @@ const validations = require('./validation.js');
   var caurrentTab = 0;
   showTab(caurrentTab);
 
-  function showTab(currentTab = 0) {
+  function showTab(currentTab) {
     var blockForm = document.getElementsByClassName('step');
     blockForm[currentTab].classList.add('step_active');
 
@@ -100,7 +100,6 @@ const validations = require('./validation.js');
     var blocks = document.getElementsByClassName('step');
 
     var allInputs = blocks[caurrentTab].getElementsByClassName('field');
-    // console.log('allInputs', allInputs);
 
     blocks[caurrentTab].classList.remove('step_active');
 
@@ -109,7 +108,7 @@ const validations = require('./validation.js');
       toggleError(element, validateField(element).message);
     }
 
-    if (validateField(element).valid) {
+    if (element.nextElementSibling.textContent === '') {
       caurrentTab = caurrentTab + curentNumb;
     }
 
