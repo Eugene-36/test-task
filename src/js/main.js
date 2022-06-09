@@ -72,9 +72,6 @@ const validations = require('./validation.js');
       toggleError(e.target, validateField(e.target).message);
     }
   }
-  // =========================
-  var caurrentTab = 0;
-  showTab(caurrentTab);
 
   function showTab(currentTab) {
     var blockForm = document.getElementsByClassName('step');
@@ -96,20 +93,24 @@ const validations = require('./validation.js');
     }
   }
 
-  function nextPrev(curentNumb) {
+  // =========================
+  var caurrentTab = 0;
+  showTab(caurrentTab);
+
+  function nextPrev(currentNumb) {
+    var isFirstFormValid;
     var blocks = document.getElementsByClassName('step');
-
     var allInputs = blocks[caurrentTab].getElementsByClassName('field');
-
     blocks[caurrentTab].classList.remove('step_active');
 
     for (var i = 0; i < allInputs.length; i++) {
       var element = allInputs[i];
+      isFirstFormValid = validateField(element).valid;
       toggleError(element, validateField(element).message);
     }
 
-    if (element.nextElementSibling.textContent === '') {
-      caurrentTab = caurrentTab + curentNumb;
+    if (isFirstFormValid) {
+      caurrentTab = caurrentTab + currentNumb;
     }
 
     showTab(caurrentTab);
@@ -168,23 +169,29 @@ const validations = require('./validation.js');
     ajax(bodyContent);
   }
 
+  function zipValidation() {
+    var valid = false;
+    var zipValue = document.querySelector('#zip');
+    var city = document.querySelector('#city');
+    var state = document.querySelector('#state');
+    var isValidField = validateField(zipValue);
+
+    if (isValidField.valid && city.value !== '' && state.value !== '') {
+      valid = true;
+    } else {
+      toggleError(zipValue, isValidField.message);
+    }
+
+    return valid;
+  }
   function submitFormFunc(e) {
     e.preventDefault();
-    var zipValue = document.getElementById('zip');
-    var city = e.target.querySelector('#city');
-    var state = e.target.querySelector('#state');
+    var zipFormValid = zipValidation();
+    var isFormValid = zipFormValid;
 
-    if (zipValue.value === '') {
-      toggleError(zipValue, validateField(zipValue).message);
-    } else if (
-      validateField(zipValue).valid &&
-      city.value !== '' &&
-      state.value !== ''
-    ) {
+    if (isFormValid) {
       e.target.submit();
       e.target.reset();
-    } else {
-      return false;
     }
   }
   /*
